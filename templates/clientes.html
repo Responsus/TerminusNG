@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="content">
+    <div class="row">
+
+        <div class="col-md-12">
+            <section class="panel">
+              <header class="panel-heading">
+                  Lista de Clientes
+            </header>
+            <div class="panel-body table-responsive">
+                <div class="box-tools m-b-15">
+                    <div class="input-group">
+                        <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="Search"/>
+                        <div class="input-group-btn">
+                            <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <a href="/clientes/novo" class="btn btn-success">Novo Cliente</a>
+                    </div>
+                </div>
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Nome</th>
+                      <th>Email</th>
+                      <th>Telefone</th>
+                      <th>Ações</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for c in clientes %}
+                    <tr>
+                      <td>{{c.id}}</td>
+                      <td>{{c.nome}}</td>
+                      <td>{{c.email}}</td>
+                      <td>{{c.telefone}}</td>
+                      <td><button class="btn btn-primary btn-sm">Ver</button></td>
+                    </tr>
+                   {% endfor %}
+            </tbody>
+            </table>
+          </div>
+          </section>
+      </div>
+    </div>
+</section>
+{% endblock %}

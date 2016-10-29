@@ -1,0 +1,266 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="content">
+<div class="row">
+    <div class="col-xs-12">
+        <section class="panel">
+          <header class="panel-heading">
+             Execução do Projeto
+          </header>
+          <div class="panel-body">
+              <div class="row">
+                  <div class="col-lg-3">
+                      <section class="panel">
+                          <header class="panel-heading">
+                            Backlog
+                          </header>
+                          <div class="panel-body">
+                              {% for t in tarefas %}
+                                  {% if t.status == 0 %}
+                                  <div class="alert alert-warning" style="border: 0.10em solid;">
+                                      {{t.titulo}}
+                                      <hr class="divider"/>
+                                  </div>
+                                  {% endif %}
+                              {% endfor %}
+                          </div>
+                      </section>
+                </div>
+                <div class="col-lg-3">
+                    <section class="panel">
+                        <header class="panel-heading">
+                          Execução
+                        </header>
+                        <div class="panel-body">
+                            {% for t in tarefas %}
+                                {% if t.status == 1 %}
+                                <div class="alert alert-warning" style="border: 0.10em solid;">
+                                    {{t.titulo}}
+                                    <hr class="divider"/>
+                                </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </section>
+              </div>
+              <div class="col-lg-3">
+                  <section class="panel">
+                      <header class="panel-heading">
+                        Validação
+                      </header>
+                      <div class="panel-body">
+                          {% for t in tarefas %}
+                              {% if t.status == 2 %}
+                              <div class="alert alert-warning" style="border: 0.10em solid;">
+                                  {{t.titulo}}
+                                  <hr class="divider"/>
+                              </div>
+                              {% endif %}
+                          {% endfor %}
+                      </div>
+                  </section>
+            </div>
+            <div class="col-lg-3">
+                <section class="panel">
+                    <header class="panel-heading">
+                      Finalizados
+                    </header>
+                    <div class="panel-body">
+                        {% for t in tarefas %}
+                            {% if t.status == 3 %}
+                            <div class="alert alert-warning" style="border: 0.10em solid;">
+                                {{t.titulo}}
+                                <hr class="divider"/>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </section>
+          </div>
+          </div>
+        </section>
+    </div>
+</div>
+</section><!-- /.content -->
+<div class="modal fade" id="modal_iniciacao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Iniciação do Projeto</h4>
+            </div>
+            <div class="modal-body">
+
+                <section class="panel general">
+                    <header class="panel-heading tab-bg-dark-navy-blue">
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a data-toggle="tab" href="#objetivo">Objetivo</a>
+                            </li>
+                            <li class="">
+                                <a data-toggle="tab" href="#cenario_atual">Cenário Atual</a>
+                            </li>
+                            <li class="">
+                                <a data-toggle="tab" href="#cenario_proposto">Cenário Proposto</a>
+                            </li>
+                        </ul>
+                    </header>
+                    <div class="panel-body">
+                        <div class="tab-content">
+                            <div id="objetivo" class="tab-pane active">
+                                Nesta etapa do projeto deve ser analisado o banco de dados do cliente e verificar as possíveis melhorias.
+                            </div>
+                            <div id="cenario_atual" class="tab-pane">Descrição do Cenário Atual do Cliente</div>
+                            <div id="cenario_proposto" class="tab-pane">Descrição do Cenário Proposto</div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+            <div class="modal-footer">
+                <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                <button class="btn btn-success" type="button">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal_planejamento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Planejamento do Projeto</h4>
+            </div>
+            <div class="modal-body">
+
+                <section class="panel general">
+                    <header class="panel-heading tab-bg-dark-navy-blue">
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a data-toggle="tab" href="#tarefas">Tarefas</a>
+                            </li>
+                            <li class="">
+                                <a data-toggle="tab" href="#comentarios">Comentários</a>
+                            </li>
+                            <li class="">
+                                <a data-toggle="tab" href="#recursos_humanos">Recursos Humanos</a>
+                            </li>
+                        </ul>
+                    </header>
+                    <div class="panel-body">
+                        <div class="tab-content">
+                            <div id="tarefas" class="tab-pane active">
+                                <section class="panel tasks-widget">
+                                  <div class="panel-body">
+
+                                    <div class="task-content">
+
+                                        <ul class="task-list">
+                                            <li>
+                                                <div class="task-checkbox">
+                                                    <!-- <input type="checkbox" class="list-child" value=""  /> -->
+                                                    <input type="checkbox" class="flat-grey list-child"/>
+                                                    <!-- <input type="checkbox" class="square-grey"/> -->
+                                                </div>
+                                                <div class="task-title">
+                                                    <span class="task-title-sp">Director is Modern Dashboard</span>
+                                                    <span class="label label-success">2 Days</span>
+                                                    <div class="pull-right hidden-phone">
+                                                        <button class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></button>
+                                                        <button class="btn btn-default btn-xs"><i class="fa fa-times"></i></button>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class=" add-task-row">
+                                        <input type="text" class="form-control pull-left" /><br/><br/>
+                                        <a class="btn btn-success btn-sm pull-left" href="#">Add New Tasks</a>
+                                    </div>
+                                </div>
+                            </section>
+                            </div>
+                            <div id="comentarios" class="tab-pane">
+                                <ul class="media-list">
+                                    <li class="media">
+                                        <a href="#" class="pull-left">
+                                            <img src="/static/img/alisson.jpg" alt="Avatar" class="img-circle" width="30" height="30">
+                                        </a>
+                                        <div class="media-body">
+                                            <span class="text-muted pull-right">
+                                                <small><em>30 min ago</em></small>
+                                            </span>
+                                            <a href="page_ready_user_profile.php">
+                                                <strong>John Doe</strong>
+                                            </a>
+                                            <p>
+                                                In hac <a href="#">habitasse</a> platea dictumst. Proin ac nibh rutrum lectus rhoncus eleifend.
+                                                <a href="#" class="text-danger">
+                                                    <strong>#dev</strong>
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li class="media">
+                                        <a href="#" class="pull-left">
+                                            <img src="/static/img/alisson.jpg" alt="Avatar" class="img-circle" width="30" height="30">
+                                        </a>
+                                        <div class="media-body">
+                                            <span class="text-muted pull-right">
+                                                <small><em>30 min ago</em></small>
+                                            </span>
+                                            <a href="page_ready_user_profile.php">
+                                                <strong>John Doe</strong>
+                                            </a>
+                                            <p>
+                                                In hac <a href="#">habitasse</a> platea dictumst. Proin ac nibh rutrum lectus rhoncus eleifend.
+                                                <a href="#" class="text-danger">
+                                                    <strong>#design</strong>
+                                                </a>
+                                            </p>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <textarea rows="3" class="form-control" placeholder="deixe aqui um comentario sobre essa etepa"></textarea>
+                                <button class="btn btn-primary">Salvar</button>
+                            </div>
+                            <div id="recursos_humanos" class="tab-pane">
+                                <ul class="list-group teammates">
+                                    <li class="list-group-item">
+                                        <a href=""><img src="/static/img/alisson.jpg" width="50" height="50"></a>
+                                        <span class="pull-right label label-danger inline m-t-15">Desenvolvimento</span>
+                                        <a href="">Alisson Machado</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href=""><img src="/static/img/alisson.jpg" width="50" height="50"></a>
+                                        <span class="pull-right label label-danger inline m-t-15">Banco de Dados</span>
+                                        <a href="">Alisson Machado</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href=""><img src="/static/img/alisson.jpg" width="50" height="50"></a>
+                                        <span class="pull-right label label-danger inline m-t-15">Infraestrutura</span>
+                                        <a href="">Alisson Machado</a>
+                                    </li>
+                                </ul>
+                                <select class="form-control">
+                                    <option>Hederson Boechat</option>
+                                    <option>Liliane Alves</option>
+                                </select><br/>
+                                <button class="btn btn-primary btn-addon btn-sm"><i class="fa fa-plus"></i> Adicionar Recurso</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+            <div class="modal-footer">
+                <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                <button class="btn btn-success" type="button">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock%}

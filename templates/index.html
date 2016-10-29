@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="content">
+
+    <div class="row" style="margin-bottom:5px;">
+
+
+        <div class="col-md-3">
+            <div class="sm-st clearfix">
+                <span class="sm-st-icon st-green"><i class="fa fa-check-square-o"></i></span>
+                <div class="sm-st-info">
+                    <span>{{aprovados}}</span>
+                    Aprovados
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="sm-st clearfix">
+                <span class="sm-st-icon st-violet"><i class="fa fa-clock-o"></i></span>
+                <div class="sm-st-info">
+                    <span>{{pendentes}}</span>
+                    Pendentes
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="sm-st clearfix">
+                <span class="sm-st-icon st-red"><i class="fa fa-eraser"></i></span>
+                <div class="sm-st-info">
+                    <span>{{reprovados}}</span>
+                    Reprovados
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="sm-st clearfix">
+                <span class="sm-st-icon st-blue"><i class="fa fa-bar-chart-o"></i></span>
+                <div class="sm-st-info">
+                    <span>{{total}}</span>
+                    Total de Projetos
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-md-12">
+            <section class="panel">
+              <header class="panel-heading">
+                  Projetos em Andamento
+            </header>
+            <div class="panel-body table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Projeto</th>
+                      <th>Gerente</th>
+                      <!-- <th>Client</th> -->
+                      <th>Data de Entrega</th>
+                      <!-- <th>Price</th> -->
+                      <th>Status</th>
+                      <th>Progress</th>
+                      <th>Ações</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  {% for p in projetos %}
+                <tr>
+                  <td>{{p.id}}</td>
+                  <td>{{p.nome}}</td>
+                  <td>{{p.gerente}}</td>
+                  <td>{{p.data_entrega}}</td>
+                  <td><span class="label label-danger">{{p.status}}</span></td>
+                  <td><span class="badge badge-info">{{p.progresso}}</span></td>
+                  <td><button class="btn btn-primary btn-sm">Ver</button></td>
+              </tr>
+                {% endfor %}
+          </tbody>
+      </table>
+  </div>
+</section>
+
+
+</div>
+</div>
+</section><!-- /.content -->
+{% endblock %}
