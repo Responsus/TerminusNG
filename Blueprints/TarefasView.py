@@ -64,5 +64,5 @@ def salvar_projeto():
         db.session.commit()
         return render_template("novo_projeto.html",message="Projeto salvo com sucesso!",status=0)
     except Exception as e:
-        print "Deu erro! ",e
+        print("Deu erro! ",e)
         return render_template("novo_projeto.html",message="Falhou ao salvar o projeto! %s"%e,status=1)
