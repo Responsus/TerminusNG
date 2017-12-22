@@ -1,14 +1,17 @@
 #!/usr/bin/python
 
 from flask import Flask,render_template
+from flask import request, redirect, url_for, flash
+from flask_login import login_user, logout_user, login_required
+from forms.forms import LoginForm
 from Blueprints.ProjetosView import projetos
 from Blueprints.ClientesView import clientes
 from Blueprints.GerentesView import gerentes
 from Blueprints.TarefasView import tarefas
-from Models.TerminusModel import db
 
 
 app = Flask(__name__)
+app.config["SECRET_KEY"] = "r3sp0nsus"
 app.register_blueprint(projetos)
 app.register_blueprint(clientes)
 app.register_blueprint(gerentes)
@@ -28,6 +31,28 @@ def index():
     return render_template("index.html",aprovados=aprovados,pendentes=pendentes,reprovados=reprovados,total=total,projetos=projetos)
 
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()    
+    print(form.validate_on_submit())
+    if request.method == 'POST' and form.validate_on_submit():
+        print("entrou no post")
+        user = app.config['USERS_COLLECTION'].find_one({"_id": form.username.data})
+        print(user)
+        print(form.password.data)
+        if user and User.validate_login(user['password'], form.password.data):
+            user_obj = User(user['_id'])
+            login_user(user_obj)
+            flash("Logged in successfully!", category='success')
+            return redirect(request.args.get("next") or url_for("write"))
+        flash("Wrong username or password!", category='error')
+    return render_template('login.html', title='login', form=form)
+
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
+
 if __name__ == '__main__':
-    db.create_all()
     app.run(host="0.0.0.0",port=5000,debug=True)
