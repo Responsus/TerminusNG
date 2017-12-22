@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 from flask import Blueprint,render_template,request,jsonify
-from MongoConnector import MongoConnector
+from MongoConnector import MongoConnector, Projects
 
 tarefas = Blueprint("tarefas",__name__)
 
@@ -11,14 +11,15 @@ def tarefas_index():
     return render_template("tarefas.html",tarefas=tarefas)
 
 @tarefas.route("/projetos/<id>/tarefas",methods=["POST"])
-def salvar_tarefas(id):
-    tarefa = TarefasModel()
+def salvar_tarefas(id):    
     try:
-        titulo = request.form["titulo"]
-        descricao = request.form["descricao"]        
+        task = {}
+        print(id)
+        task["title"] = request.form["titulo"]
+        task["description"] = request.form["descricao"]
+        p = Projects.objects(id=id).first().update(push__tasks=task)
         return jsonify({"message":"Tarefa Cadastrada com Sucesso!","status":0})
     except Exception as e:
-        db.session.rollback()
         return jsonify({"message":"Falhou ao cadastrar tarefa %s"%e,"status":1})
 
 @tarefas.route("/tarefas/<id>/execucao")

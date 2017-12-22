@@ -22,13 +22,13 @@
                                       </a>
                                       <div class="media-body">
                                           <p>
-                                              <strong>Nome: </strong>{{gerente.nome}}
+                                              <strong>Nome: </strong>{{projeto.manager}}
                                           </p>
                                           <p>
-                                              <strong>Email: </strong>{{gerente.email}}
+                                              <strong>Email: </strong>
                                           </p>
                                           <p>
-                                              <strong>Telefone: </strong>{{gerente.telefone}}
+                                              <strong>Telefone: </strong>
                                           </p>
                                       </div>
                                   </li>
@@ -53,10 +53,10 @@
                       <div class="panel-body">
                           <div class="tab-content">
                               <div id="home" class="tab-pane active">
-                                  {{projeto.objetivo}}
+                                  {{projeto.objective}}
                               </div>
-                              <div id="about" class="tab-pane">{{projeto.cenario_atual}}</div>
-                              <div id="profile" class="tab-pane">{{projeto.cenario_proposto}}</div>
+                              <div id="about" class="tab-pane">{{projeto.as_is}}</div>
+                              <div id="profile" class="tab-pane">{{projeto.to_be}}</div>
                           </div>
                       </div>
                   </section>
@@ -146,10 +146,10 @@
                     <div class="panel-body">
                         <div class="tab-content">
                             <div id="objetivo" class="tab-pane active">
-                                {{projeto.objetivo}}
+                                {{projeto.objective}}
                             </div>
-                            <div id="cenario_atual" class="tab-pane">{{projeto.cenario_atual}}</div>
-                            <div id="cenario_proposto" class="tab-pane">{{projeto.cenario_proposto}}</div>
+                            <div id="cenario_atual" class="tab-pane">{{projeto.as_is}}</div>
+                            <div id="cenario_proposto" class="tab-pane">{{projeto.to_be}}</div>
                         </div>
                     </div>
                 </section>
@@ -202,7 +202,7 @@
                                                     <!-- <input type="checkbox" class="square-grey"/> -->
                                                 </div>
                                                 <div class="task-title">
-                                                    <span class="task-title-sp">{{t.titulo}}</span>
+                                                    <span class="task-title-sp">{{t.title}}</span>
                                                     <div class="pull-right hidden-phone">
                                                         <button class="btn btn-default btn-xs"><i class="fa fa-pencil"></i></button>
                                                         <button class="btn btn-default btn-xs"><i class="fa fa-times"></i></button>

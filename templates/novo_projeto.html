@@ -25,9 +25,9 @@
                   <div class="form-group">
                       <label class="col-sm-2 col-sm-2 control-label">Cliente</label>
                       <div class="col-sm-10">
-                          <select type="text" name="client" class="form-control round-input">
+                          <select type="text" name="client_id" class="form-control round-input">
                               {% for c in clientes %}
-                              <option value="{{c.name}}">{{c.name}}</option>
+                              <option value="{{c._id}}">{{c.name}}</option>
                               {% endfor %}
                           </select>
                       </div>

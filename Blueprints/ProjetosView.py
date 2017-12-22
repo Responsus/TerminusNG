@@ -14,11 +14,8 @@ def projetos_index():
 @projetos.route("/projetos/<id>/")
 @login_required
 def ver_projetos(id):
-    projeto = ""
-    gerente = ""
-    tarefas = ""
-    return render_template("ver_projeto.html",projeto=projeto,gerente=gerente,
-                           tarefas=tarefas)
+    projeto = Projects.objects(id=id).first()
+    return render_template("ver_projeto.html",projeto=projeto,tarefas=projeto.tasks)
 
 @projetos.route("/projetos/<id>/execucao")
 @login_required
@@ -45,9 +42,10 @@ def salvar_projeto():
     try:
         p = Projects()
         for attr in request.form:
-            setattr(p,attr,request.form[attr])
+            setattr(p,attr,request.form[attr])        
         p.budget = float(request.form["budget"])
         p.manager_id = current_user.id
+        p.client = User.objects(id=p.client_id).first().name
         p.save()
         return render_template("novo_projeto.html",message="Projeto salvo com sucesso!",status=0)
     except Exception as e:

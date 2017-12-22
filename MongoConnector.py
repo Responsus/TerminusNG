@@ -32,6 +32,7 @@ class User(db.Document, UserMixin):
 
 class Projects(db.Document, UserMixin):
     manager_id = db.ObjectIdField()
+    client_id = db.ObjectIdField()
     name = db.StringField()
     manager = db.StringField()
     client = db.StringField()
@@ -42,6 +43,7 @@ class Projects(db.Document, UserMixin):
     end_date = db.StringField()
     status = db.IntField()
     budget = db.FloatField()
+    tasks = db.ListField()
 
 
 user_datastore = MongoEngineUserDatastore(db, User, Role)

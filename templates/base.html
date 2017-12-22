@@ -60,14 +60,14 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-user"></i>
-                                <span>Alisson Machado <i class="caret"></i></span>
+                                <span>{{current_user.name}} <i class="caret"></i></span>
                             </a>
                             <ul class="dropdown-menu dropdown-custom dropdown-menu-right">
                                 <li class="dropdown-header text-center">Account</li>
                                 <li class="divider"></li>
 
                                     <li>
-                                        <a href="#">
+                                        <a href="/profile">
                                         <i class="fa fa-user fa-fw pull-right"></i>
                                             Profile
                                         </a>
@@ -99,7 +99,7 @@
                                     <img src="/static/img/alisson.jpg" class="img-circle" alt="User Image" />
                                 </div>
                                 <div class="pull-left info">
-                                    <p>Seja bem vindo, Alisson</p>
+                                    <p>Seja bem vindo, {{current_user.name}}</p>
 
                                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                                 </div>
@@ -135,6 +135,11 @@
                                 <li>
                                     <a href="/gerentes">
                                         <i class="fa fa-user"></i> <span>Gerentes</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/parceiros">
+                                        <i class="fa fa-user"></i> <span>Parceiros</span>
                                     </a>
                                 </li>
 

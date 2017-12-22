@@ -3,7 +3,6 @@
 from flask import Flask,render_template
 from flask import request, redirect, url_for, flash
 from flask_login import login_user, logout_user, login_required
-from forms.forms import LoginForm
 from Blueprints.ProjetosView import projetos
 from Blueprints.ClientesView import clientes
 from Blueprints.GerentesView import gerentes

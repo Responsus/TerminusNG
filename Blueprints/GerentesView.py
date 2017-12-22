@@ -2,6 +2,7 @@
 
 from flask import Blueprint,render_template,request
 from MongoConnector import MongoConnector, User
+from flask_security import current_user
 
 gerentes = Blueprint("gerentes",__name__)
 
@@ -17,6 +18,24 @@ def ver_gerentes(id):
 @gerentes.route("/gerentes/novo")
 def novo_gerente():
     return render_template("novo_gerente.html")
+
+@gerentes.route("/profile")
+def profile():
+    u = User.objects(id=current_user.id).first()
+    return render_template("novo_gerente.html",user=u)
+
+@gerentes.route("/profile",methods=["POST"])
+def profile_update():
+    try:
+        u = User.objects(id=current_user.id).first()        
+        for attr in request.form:
+            setattr(u,attr,request.form[attr])
+        u.is_manager = bool(request.form["is_manager"])
+        u.save()
+        return render_template("novo_gerente.html",message="Usuario atualizado com sucesso!",status=0)
+    except Exception as e:
+        print("Erro!:", e)
+        return render_template("novo_gerente.html",message="Falhou ao atualizar usuario! %s"%e,status=1)
 
 @gerentes.route("/gerentes/novo",methods=["POST"])
 def salvar_gerente():    

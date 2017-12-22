@@ -15,29 +15,33 @@
              Cadastro de Proposta de Projeto
           </header>
           <div class="panel-body">
+              {% if user %}
+              <form class="form-horizontal tasi-form" method="post" action="/profile">
+              {% else %}
               <form class="form-horizontal tasi-form" method="post" action="/gerentes/novo">
+              {% endif %}
                   <div class="form-group">
                       <label class="col-sm-2 col-sm-2 control-label">Nome</label>
                       <div class="col-sm-10">
-                          <input type="text" name="name" class="form-control">
+                          <input type="text" name="name" {% if user %} value="{{user.name}}" {% endif %} class="form-control">
                       </div>
                   </div>
                   <div class="form-group">
                       <label class="col-sm-2 col-sm-2 control-label">Especialidade</label>
                       <div class="col-sm-10">
-                          <input type="text" name="skills" class="form-control round-input">
+                          <input type="text" name="skills" {% if user %} value="{{user.skills}}" {% endif %} class="form-control round-input">
                       </div>
                   </div>
                   <div class="form-group">
                       <label class="col-sm-2 col-sm-2 control-label">Email</label>
                       <div class="col-sm-10">
-                          <input type="text" name="email" class="form-control">
+                          <input type="text" name="email" {% if user %} value="{{user.email}}" {% endif %} class="form-control">
                       </div>
                   </div>
                   <div class="form-group">
                       <label class="col-sm-2 col-sm-2 control-label">Telefone</label>
                       <div class="col-sm-10">
-                          <input type="text" name="phone" class="form-control round-input">
+                          <input type="text" name="phone" {% if user %} value="{{user.phone}}" {% endif %} class="form-control round-input">
                       </div>
                   </div>
                   <div class="form-group">
