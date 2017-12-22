@@ -33,10 +33,10 @@
               <tbody>
                   {% for c in clientes %}
                     <tr>
-                      <td>{{c.id}}</td>
-                      <td>{{c.nome}}</td>
+                      <td>{{c._id}}</td>
+                      <td>{{c.name}}</td>
                       <td>{{c.email}}</td>
-                      <td>{{c.telefone}}</td>
+                      <td>{{c.phone}}</td>
                       <td><button class="btn btn-primary btn-sm">Ver</button></td>
                     </tr>
                    {% endfor %}

@@ -9,15 +9,27 @@ from Blueprints.ClientesView import clientes
 from Blueprints.GerentesView import gerentes
 from Blueprints.TarefasView import tarefas
 
+from MongoConnector import db, user_datastore, security
+
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "r3sp0nsus"
+app.config['SECURITY_REGISTERABLE'] = True
+app.config['SECURITY_SEND_REGISTER_EMAIL'] = False
+app.config['SECURITY_PASSWORD_SALT'] = '3487432897342893498'
+app.config['MONGODB_SETTINGS']= {"db":'terminusng','host':'localhost'}
+
 app.register_blueprint(projetos)
 app.register_blueprint(clientes)
 app.register_blueprint(gerentes)
 app.register_blueprint(tarefas)
 
+db.init_app(app)
+
+security.init_app(app, user_datastore)
+
 @app.route("/")
+@login_required
 def index():
     aprovados = 0
     pendentes = 0

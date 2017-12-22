@@ -22,6 +22,7 @@
                 <table class="table table-hover">
                     <tr>
                         <th>ID</th>
+                        <th>Nome</th>
                         <th>Cliente</th>
                         <th>Data de Entrega</th>
                         <th>Status</th>
@@ -31,10 +32,11 @@
                     {% for p in projetos %}
                     <tr>
                         <td>{{p.id}}</td>
-                        <td>{{p.nome}}</td>
-                        <td>{{p.data_entrega}}</td>
-                        <td><span class="label label-success">{{p.status}}</span></td>
-                        <td>{{p.objetivo}}</td>
+                        <td>{{p.name}}</td>
+                        <td>{{p.client}}</td>
+                        <td>{{p.start_date}}</td>
+                        <td><span class="label label-success"></span></td>
+                        <td>{{p.objective}}</td>
                         <td><a href="/projetos/{{p.id}}" class="btn btn-primary btn-sm">Ver</a></td>
 
                     </tr>
